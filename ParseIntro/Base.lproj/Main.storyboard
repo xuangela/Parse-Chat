@@ -16,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ParseChat" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TOI-7U-0YB">
-                                <rect key="frame" x="152" y="351" width="111" height="33"/>
+                                <rect key="frame" x="151.5" y="351" width="111" height="33"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="33" id="2kF-18-NVI"/>
                                     <constraint firstAttribute="width" constant="111" id="ElS-Xs-M6E"/>
@@ -128,21 +128,31 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="hello" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T5R-Y0-cqw">
-                                                    <rect key="frame" x="8" y="8" width="398" height="201"/>
+                                                    <rect key="frame" x="8" y="47.5" width="398" height="161.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fSM-Fb-hfp">
+                                                    <rect key="frame" x="28" y="19" width="358" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="T5R-Y0-cqw" firstAttribute="top" secondItem="gpW-6w-biY" secondAttribute="top" constant="8" id="9vR-f2-5jW"/>
+                                                <constraint firstItem="fSM-Fb-hfp" firstAttribute="top" secondItem="gpW-6w-biY" secondAttribute="topMargin" constant="8" id="3Bo-6z-dhq"/>
                                                 <constraint firstAttribute="bottom" secondItem="T5R-Y0-cqw" secondAttribute="bottom" constant="8" id="Bht-bY-3hl"/>
                                                 <constraint firstAttribute="trailing" secondItem="T5R-Y0-cqw" secondAttribute="trailing" constant="8" id="UqM-kd-Ct8"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="fSM-Fb-hfp" secondAttribute="trailing" constant="8" id="YBO-PF-Hi9"/>
+                                                <constraint firstItem="T5R-Y0-cqw" firstAttribute="top" secondItem="fSM-Fb-hfp" secondAttribute="bottom" constant="8" id="ZiF-hF-7n5"/>
                                                 <constraint firstItem="T5R-Y0-cqw" firstAttribute="leading" secondItem="gpW-6w-biY" secondAttribute="leading" constant="8" id="qf0-kx-r50"/>
+                                                <constraint firstItem="fSM-Fb-hfp" firstAttribute="leading" secondItem="gpW-6w-biY" secondAttribute="leadingMargin" constant="8" id="wU1-28-V3l"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="messageLabel" destination="T5R-Y0-cqw" id="lYM-ZI-kNU"/>
+                                            <outlet property="usernameLabel" destination="fSM-Fb-hfp" id="1DW-0K-hxh"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

@@ -35,6 +35,7 @@
 - (IBAction)tapSend:(id)sender {
     PFObject *chatMessage = [PFObject objectWithClassName:@"Message_fbu2020"];
     chatMessage[@"text"] = self.textField.text;
+    chatMessage[@"user"] = PFUser.currentUser;
     [chatMessage saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
         if (succeeded) {
             NSLog(@"The message was saved!");
@@ -48,10 +49,11 @@
 - (void)onTimer {
     PFQuery *query = [PFQuery queryWithClassName:@"Message_fbu2019"];
     [query orderByDescending:@"createdAt"];
+    [query includeKey:@"user"];
     query.limit = 20;
     
-
     // fetch data asynchronously
+
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
             self.posts = posts;
@@ -65,7 +67,17 @@
 - (UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     ChatCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"ChatCell"];
     
-    cell.messageLabel.text = [self.posts[indexPath.row] objectForKey:@"text"];
+    PFObject *chatMessage =self.posts[indexPath.row];
+    PFUser *user = chatMessage[@"user"];
+    
+    if (user != nil) {
+        cell.usernameLabel.text = user.username;
+    } else {
+        // No user found, set default username
+        cell.usernameLabel.text = @"🤖";
+    }
+    
+    cell.messageLabel.text = [chatMessage objectForKey:@"text"];
     NSLog(@"%@", cell.messageLabel.text);
     
     return cell;
