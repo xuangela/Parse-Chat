@@ -8,10 +8,14 @@
 
 #import "ChatViewController.h"
 #import <Parse/Parse.h>
+#import "ChatCell.h"
 
-@interface ChatViewController ()
+@interface ChatViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *textField;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+@property (nonatomic, strong) NSArray *posts;
 
 @end
 
@@ -19,7 +23,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    
+    [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(onTimer) userInfo:nil repeats:true];
+    
+    [self.tableView reloadData];
 }
 
 - (IBAction)tapSend:(id)sender {
@@ -35,6 +45,36 @@
     }];
 }
 
+- (void)onTimer {
+    PFQuery *query = [PFQuery queryWithClassName:@"Message_fbu2019"];
+    [query orderByDescending:@"createdAt"];
+    query.limit = 20;
+    
+
+    // fetch data asynchronously
+    [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
+        if (posts != nil) {
+            self.posts = posts;
+            [self.tableView reloadData];
+        } else {
+           NSLog(@"%@", error.localizedDescription);
+        }
+    }];
+}
+
+- (UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    ChatCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"ChatCell"];
+    
+    cell.messageLabel.text = [self.posts[indexPath.row] objectForKey:@"text"];
+    NSLog(@"%@", cell.messageLabel.text);
+    
+    return cell;
+}
+
+- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.posts.count;
+}
+
 /*
 #pragma mark - Navigation
 
@@ -46,3 +86,6 @@
 */
 
 @end
+
+
+

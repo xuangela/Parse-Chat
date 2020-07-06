@@ -88,12 +88,44 @@
                                     <action selector="tapSend:" destination="Wxc-jU-1wl" eventType="touchUpInside" id="s7C-a4-Ncd"/>
                                 </connections>
                             </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yfD-Hm-5Om">
+                                <rect key="frame" x="0.0" y="141" width="414" height="755"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChatCell" rowHeight="217" id="Sbk-Sh-UZ1" customClass="ChatCell">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="217"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Sbk-Sh-UZ1" id="gpW-6w-biY">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="217"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="hello" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T5R-Y0-cqw">
+                                                    <rect key="frame" x="0.0" y="11" width="414" height="25"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="messageLabel" destination="T5R-Y0-cqw" id="lYM-ZI-kNU"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="nxF-q7-M4F" id="1SV-LQ-yEa"/>
+                                    <outlet property="delegate" destination="nxF-q7-M4F" id="qz9-JS-4Hb"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="xb4-On-OAP"/>
                     </view>
                     <navigationItem key="navigationItem" title="Chat" id="DZ6-J5-nJu"/>
                     <connections>
+                        <outlet property="tableView" destination="yfD-Hm-5Om" id="pKZ-rx-m8E"/>
                         <outlet property="textField" destination="9td-vx-0qP" id="NSO-9e-vKH"/>
                     </connections>
                 </viewController>
